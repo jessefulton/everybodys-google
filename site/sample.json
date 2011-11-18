@@ -1,0 +1,290 @@
+{
+ "kind": "customsearch#search",
+ "url": {
+  "type": "application/json",
+  "template": "https://www.googleapis.com/customsearch/v1?q={searchTerms}&num={count?}&start={startIndex?}&hr={language?}&safe={safe?}&cx={cx?}&cref={cref?}&sort={sort?}&filter={filter?}&gl={gl?}&cr={cr?}&googlehost={googleHost?}&alt=json"
+ },
+ "queries": {
+  "nextPage": [
+   {
+    "title": "Google Custom Search - bababooey",
+    "totalResults": "17400",
+    "searchTerms": "bababooey",
+    "count": 10,
+    "startIndex": 11,
+    "inputEncoding": "utf8",
+    "outputEncoding": "utf8",
+    "safe": "off",
+    "cx": "009186483531339421868:zfe43i22bei"
+   }
+  ],
+  "request": [
+   {
+    "title": "Google Custom Search - bababooey",
+    "totalResults": "17400",
+    "searchTerms": "bababooey",
+    "count": 10,
+    "startIndex": 1,
+    "inputEncoding": "utf8",
+    "outputEncoding": "utf8",
+    "safe": "off",
+    "cx": "009186483531339421868:zfe43i22bei"
+   }
+  ]
+ },
+ "context": {
+  "title": "Search the web"
+ },
+ "items": [
+  {
+   "kind": "customsearch#result",
+   "title": "The official home of Gary Dell'Abate | BabaBooey.com",
+   "htmlTitle": "The official home of Gary Dell&#39;Abate | \u003cb\u003eBabaBooey\u003c/b\u003e.com",
+   "link": "http://bababooey.com/",
+   "displayLink": "bababooey.com",
+   "snippet": "Welcome to the new BabaBooey.com. Here you'll be able to find all things Baba   Booey. Keep checking back for updated book tour dates, along with other ...",
+   "htmlSnippet": "Welcome to the new \u003cb\u003eBabaBooey\u003c/b\u003e.com. Here you&#39;ll be able to find all things \u003cb\u003eBaba\u003c/b\u003e \u003cbr\u003e  \u003cb\u003eBooey\u003c/b\u003e. Keep checking back for updated book tour dates, along with other \u003cb\u003e...\u003c/b\u003e",
+   "cacheId": "tcVJ-y8XENsJ",
+   "pagemap": {
+    "cse_image": [
+     {
+      "src": "http://bababooey.com/images/football-link.png"
+     }
+    ],
+    "cse_thumbnail": [
+     {
+      "width": "246",
+      "height": "160",
+      "src": "http://t0.gstatic.com/images?q=tbn:ANd9GcR6QviMs6pKtU2clpDYUO7bygEqo8SkAG5vJoWAq1yUyazpamrNc1CSrpA"
+     }
+    ],
+    "metatags": [
+     {
+      "author": "Transmit Identity"
+     }
+    ]
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Gary Dell'Abate - Wikipedia, the free encyclopedia",
+   "htmlTitle": "Gary Dell&#39;Abate - Wikipedia, the free encyclopedia",
+   "link": "http://en.wikipedia.org/wiki/Gary_Dell'Abate",
+   "displayLink": "en.wikipedia.org",
+   "snippet": "\"Baba Booey\" as a term has become a mantra for fans of The Howard Stern   Show and is often used during crank calls to live network television or radio ...",
+   "htmlSnippet": "&quot;\u003cb\u003eBaba Booey\u003c/b\u003e&quot; as a term has become a mantra for fans of The Howard Stern \u003cbr\u003e  Show and is often used during crank calls to live network television or radio \u003cb\u003e...\u003c/b\u003e",
+   "cacheId": "e8JDCg_6qSMJ",
+   "pagemap": {
+    "person": [
+     {
+      "role": "Radio producer"
+     }
+    ],
+    "hcard": [
+     {
+      "fn": "Gary Dell'Abate",
+      "nickname": "Gary Patrick Angelo Dell'Abate",
+      "bday": "1961-03-14",
+      "role": "Radio producer"
+     }
+    ]
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Prank \"Baba Booey\" Call to Peter Jennings - YouTube",
+   "htmlTitle": "Prank &quot;\u003cb\u003eBaba Booey\u003c/b\u003e&quot; Call to Peter Jennings - YouTube",
+   "link": "http://www.youtube.com/watch?v=lP8TwjRMdS0",
+   "displayLink": "www.youtube.com",
+   "snippet": "In the moments after the O. J. Simpson \"chase\". There's a detailed write-up about  this call in Howard Stern's book, \"Miss America\" on page 473.",
+   "htmlSnippet": "In the moments after the O. J. Simpson &quot;chase&quot;. There&#39;s a detailed write-up about  this call in Howard Stern&#39;s book, &quot;Miss America&quot; on page 473."
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Urban Dictionary: Bababooey",
+   "htmlTitle": "Urban Dictionary: \u003cb\u003eBababooey\u003c/b\u003e",
+   "link": "http://www.urbandictionary.com/define.php?term=Bababooey",
+   "displayLink": "www.urbandictionary.com",
+   "snippet": "1. Bababooey. Gary Dell'abbate from the Howard Stern show. His other name is   Bababooey because of an inside joke about a cartoon cell a long time ago. ...",
+   "htmlSnippet": "1. \u003cb\u003eBababooey\u003c/b\u003e. Gary Dell&#39;abbate from the Howard Stern show. His other name is \u003cbr\u003e  \u003cb\u003eBababooey\u003c/b\u003e because of an inside joke about a cartoon cell a long time ago. \u003cb\u003e...\u003c/b\u003e",
+   "cacheId": "i9lCoQm3jBUJ",
+   "pagemap": {
+    "": [
+     {
+      "description": "Gary Dell'abbate from the Howard Stern show.",
+      "title": "Bababooey",
+      "image": "http://static2.urbandictionary.com/rel-18cacf7/images/og_image.png",
+      "site_name": "Urban Dictionary"
+     }
+    ],
+    "image": [
+     {
+      "src": "http://static2.urbandictionary.com/rel-18cacf7/images/og_image.png"
+     }
+    ],
+    "metatags": [
+     {
+      "og:description": "Gary Dell'abbate from the Howard Stern show.",
+      "og:title": "Bababooey",
+      "og:image": "http://static2.urbandictionary.com/rel-18cacf7/images/og_image.png",
+      "og:site_name": "Urban Dictionary"
+     }
+    ]
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Baba-booey first pitch 5-9-09 - YouTube",
+   "htmlTitle": "\u003cb\u003eBaba-booey\u003c/b\u003e first pitch 5-9-09 - YouTube",
+   "link": "http://www.youtube.com/watch?v=Pvh3JtfIIuo",
+   "displayLink": "www.youtube.com",
+   "snippet": "Gary Dell'Abate (producer of Howard Stern show and host of the Wrap Up Show)  throwing first pitch before Mets v. Pirates on May 9, 2009.",
+   "htmlSnippet": "Gary Dell&#39;Abate (producer of Howard Stern show and host of the Wrap Up Show)  throwing first pitch before Mets v. Pirates on May 9, 2009."
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Urban Dictionary: baba booey",
+   "htmlTitle": "Urban Dictionary: \u003cb\u003ebaba booey\u003c/b\u003e",
+   "link": "http://www.urbandictionary.com/define.php?term=baba%20booey",
+   "displayLink": "www.urbandictionary.com",
+   "snippet": "May 2, 2009 ... Nickname for Howard Stern show producer Gary Dell'Abate. Bestowed on him   when one day during a show Gary insisted that he had a ...",
+   "htmlSnippet": "May 2, 2009 \u003cb\u003e...\u003c/b\u003e Nickname for Howard Stern show producer Gary Dell&#39;Abate. Bestowed on him \u003cbr\u003e  when one day during a show Gary insisted that he had a \u003cb\u003e...\u003c/b\u003e",
+   "cacheId": "3D9W0vmTwVoJ",
+   "pagemap": {
+    "": [
+     {
+      "description": "Nickname for Howard Stern show producer Gary Dell'Abate. Bestowed on him when one day during a show Gary insisted that he had a animation cell of Q...",
+      "title": "baba booey",
+      "image": "http://static3.urbandictionary.com/rel-089060e/images/og_image.png",
+      "site_name": "Urban Dictionary"
+     }
+    ],
+    "image": [
+     {
+      "src": "http://static3.urbandictionary.com/rel-089060e/images/og_image.png"
+     }
+    ],
+    "metatags": [
+     {
+      "og:description": "Nickname for Howard Stern show producer Gary Dell'Abate. Bestowed on him when one day during a show Gary insisted that he had a animation cell of Q...",
+      "og:title": "baba booey",
+      "og:image": "http://static3.urbandictionary.com/rel-089060e/images/og_image.png",
+      "og:site_name": "Urban Dictionary"
+     }
+    ]
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Amazon.com: They Call Me Baba Booey (9781400069552): Gary ...",
+   "htmlTitle": "Amazon.com: They Call Me \u003cb\u003eBaba Booey\u003c/b\u003e (9781400069552): Gary \u003cb\u003e...\u003c/b\u003e",
+   "link": "http://www.amazon.com/They-Call-Me-Baba-Booey/dp/1400069556",
+   "displayLink": "www.amazon.com",
+   "snippet": "Amazon.com: They Call Me Baba Booey (9781400069552): Gary Dell'Abate,   Chad Millman: Books.",
+   "htmlSnippet": "Amazon.com: They Call Me \u003cb\u003eBaba Booey\u003c/b\u003e (9781400069552): Gary Dell&#39;Abate, \u003cbr\u003e  Chad Millman: Books.",
+   "cacheId": "7FC1epNR0toJ",
+   "pagemap": {
+    "cse_image": [
+     {
+      "src": "http://ecx.images-amazon.com/images/I/51yldMJhi1L._BO2,204,203,200_PIsitb-sticker-arrow-click,TopRight,35,-76_AA300_SH20_OU01_.jpg"
+     }
+    ],
+    "cse_thumbnail": [
+     {
+      "width": "225",
+      "height": "225",
+      "src": "http://t1.gstatic.com/images?q=tbn:ANd9GcRgHaCvAUaD6c3UpH5rGewHmG5jsa9ZYhacoI8xRqbgetHkMP4UqYv5mEYF"
+     }
+    ],
+    "metatags": [
+     {
+      "title": "Amazon.com: They Call Me Baba Booey (9781400069552): Gary Dell'Abate, Chad Millman: Books"
+     }
+    ]
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "'Baba Booey' Hits a 'Kimmel' Audience Member in the Head With ...",
+   "htmlTitle": "&#39;\u003cb\u003eBaba Booey\u003c/b\u003e&#39; Hits a &#39;Kimmel&#39; Audience Member in the Head With \u003cb\u003e...\u003c/b\u003e",
+   "link": "http://www.aoltv.com/2010/11/12/baba-booey-hits-a-kimmel-audience-member-in-the-head-with-a/",
+   "displayLink": "www.aoltv.com",
+   "snippet": "Gary Dell'Abate is a native New Yorker, and a lifelong New York Mets fan. And  Gary got the chance of a lifetime ... twice. Well.",
+   "htmlSnippet": "Gary Dell&#39;Abate is a native New Yorker, and a lifelong New York Mets fan. And  Gary got the chance of a lifetime ... twice. Well."
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Baba Booey Strikes Out in First Pitch Redemption | TMZ.com",
+   "htmlTitle": "\u003cb\u003eBaba Booey\u003c/b\u003e Strikes Out in First Pitch Redemption | TMZ.com",
+   "link": "http://www.tmz.com/2010/11/12/gary-dellabate-the-howard-stern-show-first-pitch/",
+   "displayLink": "www.tmz.com",
+   "snippet": "Nov 12, 2010 ... Gary Dell'Abate went on \" Kimmel \" last night -- and finally got a chance to make   up for that famously terrible first pitch he threw at a Mets game ...",
+   "htmlSnippet": "Nov 12, 2010 \u003cb\u003e...\u003c/b\u003e Gary Dell&#39;Abate went on &quot; Kimmel &quot; last night -- and finally got a chance to make \u003cbr\u003e  up for that famously terrible first pitch he threw at a Mets game \u003cb\u003e...\u003c/b\u003e",
+   "cacheId": "G5D3ZxlIHCMJ",
+   "pagemap": {
+    "cse_image": [
+     {
+      "src": "http://ll-media.tmz.com/2010/11/12/11010-baba-booey-video-credit.jpg"
+     }
+    ],
+    "cse_thumbnail": [
+     {
+      "width": "272",
+      "height": "185",
+      "src": "http://t3.gstatic.com/images?q=tbn:ANd9GcTxYG0oZPHSOm5fyBxoIxKD-9vjBy8v8v5_jmwGtYNqQxc5nPBen6W1gm-h"
+     }
+    ],
+    "article": [
+     {
+      "title": "Baba Booey Strikes Out in First Pitch Redemption",
+      "type": "article",
+      "url": "http://www.tmz.com/2010/11/12/gary-dellabate-the-howard-stern-show-first-pitch/",
+      "image": "http://ll-media.tmz.com/2010/11/12/11010-baba-booey-video.jpg"
+     }
+    ],
+    "image": [
+     {
+      "src": "http://ll-media.tmz.com/2010/11/12/11010-baba-booey-video.jpg"
+     }
+    ],
+    "metatags": [
+     {
+      "msvalidate.01": "AFEB17971BCF30779AEA662782EF26F4",
+      "y_key": "14cb04e4656b0c58",
+      "tweetmeme-title": "Baba Booey Strikes Out in First Pitch Redemption",
+      "og:title": "Baba Booey Strikes Out in First Pitch Redemption",
+      "og:type": "article",
+      "og:url": "http://www.tmz.com/2010/11/12/gary-dellabate-the-howard-stern-show-first-pitch/",
+      "og:image": "http://ll-media.tmz.com/2010/11/12/11010-baba-booey-video.jpg"
+     }
+    ]
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Baba Booey: Gary Dell'Abate Talks the Future of The Howard Stern ...",
+   "htmlTitle": "\u003cb\u003eBaba Booey\u003c/b\u003e: Gary Dell&#39;Abate Talks the Future of The Howard Stern \u003cb\u003e...\u003c/b\u003e",
+   "link": "http://www.pr.com/article/1163",
+   "displayLink": "www.pr.com",
+   "snippet": "Baba Booey: Gary Dell'Abate Talks the Future of The Howard Stern Show,   Debuting on Letterman & His Surprising Past - Article, Review, Story from PR.  com.",
+   "htmlSnippet": "\u003cb\u003eBaba Booey\u003c/b\u003e: Gary Dell&#39;Abate Talks the Future of The Howard Stern Show, \u003cbr\u003e  Debuting on Letterman &amp; His Surprising Past - Article, Review, Story from PR.\u003cbr\u003e  com.",
+   "cacheId": "9td4kj_cIfYJ",
+   "pagemap": {
+    "cse_image": [
+     {
+      "src": "http://img.pr.com/article/1011/article_attachment_1288706890.jpg"
+     }
+    ],
+    "cse_thumbnail": [
+     {
+      "width": "183",
+      "height": "275",
+      "src": "http://t0.gstatic.com/images?q=tbn:ANd9GcSfCCZ_SsJ8GuGydvoeKKN75uxvU4V0WTWVhtdpJ7xfs9CiPCU8utswncg"
+     }
+    ]
+   }
+  }
+ ]
+}
+
+

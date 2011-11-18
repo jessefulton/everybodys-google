@@ -1,0 +1,40 @@
+<html>
+	<script src='jquery-1.7.js'></script>
+	<script>
+		chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+			console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
+			if (request.type == "results") {
+				var data = request.data;
+				
+				//TODO: handle error response from AJAX?
+				$.post("http://localhost:3000/api/results", data,
+					function(responseObj) {
+						sendResponse(responseObj);
+				}, "JSON");
+			}
+			else {
+				//this is necessary to close connection
+				sendResponse({});
+			}
+		});
+	  
+	  
+	  
+	  
+	/*  
+		function sendResults(clientId, query, results, callback) {
+				$.post(
+					"http://localhost:3000/api/results", 
+					{ 
+						"query": query
+						, "clientId": clientId 
+						, "results": results
+					},
+				   function(data) {
+					 callback(data);
+				   }
+				   , "JSON");
+		}
+	*/
+	</script>
+</html>

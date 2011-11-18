@@ -1,0 +1,106 @@
+/*
+//--- facebook colors
+PRIMARY_COLOR = #3B5998
+PRIMARY_SHADOW = #1D4088
+PRIMARY_HIGHLIGHT = #E0EEFF
+
+SECONDARY_COLOR = #627AAD
+SECONDARY_SHADOW = #4F79A8
+SECONDARY_HIGHLIGHT = #D3E2F4
+*/
+
+
+//http://www.colourlovers.com/palette/1751123/Jeune_Chef_2_APC?widths=1
+TEAL = #3A7778
+BROWN = #928C5A
+GREEN = #9AAE55
+YELLOW = #F3D678
+REDORANGE = #CA5D36
+
+//http://www.colourlovers.com/palette/1737930/playhouse
+SAGE = #A1C98A
+BEIGE = #DCD57D
+MUSTARD = #B3A926
+LIGHT_BROWN = #9A8023
+DARK_BROWN = #664A18
+
+
+
+//http://www.colourlovers.com/palette/589300/Jumping_Over_Fences
+$deepBlue = #385D8C
+$coolGreen = #59AD4B
+$cocoa = #664415
+$softBeige = #F0EBCC
+
+
+//http://www.colourlovers.com/palette/493834/Tight_Dog
+$skyBlue = #9CD7F7
+$richBrown = #452A05
+$cleanTeal = #4CB592
+$softBrown = #80573D
+
+//http://www.colourlovers.com/palette/1638609/erin_mccaw_3
+$luckyGreen = #75C259
+$robin = #76A2CE
+$burlap = #CCAD86
+$anotherBrown = #5E3816
+
+
+
+//variables
+GOOD_PRIMARY = #7fbf4d
+GOOD_SECONDARY = #332
+
+BAD_PRIMARY = #Ef1010
+BAD_SECONDARY = #FFF3F3
+
+SHADOW_AMT = 30%
+HIGHLIGHT_AMT = 30%
+
+PRIMARY_COLOR = $softBrown
+SECONDARY_COLOR = darken(saturate(PRIMARY_COLOR, 25%), 20%)
+
+ACCENT1_COLOR = $richBrown
+ACCENT2_COLOR = $cocoa
+ACCENT3_COLOR = $deepBlue
+ACCENT4_COLOR = $coolGreen
+
+
+
+
+
+BUTTON_HIGHLIGHT = #FFF
+
+WHITE = #FFF
+BLACK = #333
+
+
+//buttons
+good-button(s = 28px)
+  bold-button(GOOD_PRIMARY, BUTTON_HIGHLIGHT, s)
+  color GOOD_SECONDARY
+  cursor pointer
+
+bad-button(s = 28px)
+  bold-button(BAD_PRIMARY, BUTTON_HIGHLIGHT, s)
+  color BAD_SECONDARY
+  cursor pointer
+
+
+info-button()
+  bold-button(PRIMARY_COLOR, BUTTON_HIGHLIGHT, 25)
+  cursor pointer
+
+default-button()
+  bold-button(PRIMARY_COLOR, BUTTON_HIGHLIGHT, 25)
+  cursor pointer
+
+
+
+top-rounded(n)
+  -webkit-border-top-left-radius n
+  -moz-border-radius-topleft n
+  border-top-left-radius n
+  -webkit-border-top-right-radius n
+  -moz-border-radius-topright n
+  border-top-right-radius n
