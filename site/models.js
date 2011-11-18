@@ -20,11 +20,18 @@ function defineModels(mongoose, fn) {
 	WebSearchResult.virtual('id')
 		.get(function() { return this._id.toHexString(); });
 	
+	
+	var ClientWebSearch = new Schema({
+		created: {type: Date, default: Date.now}
+		, url: String
+		, clientId: String
+		, results: [WebSearchResult]	
+	});
+	
 	var WebSearch = new Schema({
 		created: {type: Date, default: Date.now}
-		, clientId: String
 		, query: String
-		, results: [WebSearchResult]
+		, searches: [ClientWebSearch]
 	});
 
 	WebSearch.virtual('id')
@@ -33,6 +40,7 @@ function defineModels(mongoose, fn) {
 
   mongoose.model('websearchresult', WebSearchResult);
   mongoose.model('websearch', WebSearch);
+  mongoose.model('clientwebsearch', ClientWebSearch);
 
   fn();
 }

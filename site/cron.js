@@ -15,22 +15,24 @@ var app = {};
 models.defineModels(mongoose, function() {
 	app.WebSearch = mongoose.model('websearch');
 	app.WebSearchResult = mongoose.model('websearchresult');
+	app.ClientWebSearch = mongoose.model('clientwebsearch');
 	mongoose.connect('mongodb://' + conf.db.uri);
 	mongoose.connection.on("open", function() {
 	
 	
 		var apiUrl = "https://www.googleapis.com/customsearch/v1?key=" + conf.google.apiKey + "&cx=" + conf.google.cseId + "&alt=json";
 		
-		var searchTerm = encodeURIComponent("bababooey");
+		var searchTerm = encodeURIComponent("fubar");
 		apiUrl += "&q=" + searchTerm;
 		
 		request(apiUrl, function (error, response, body) {
 		  if (!error && response.statusCode == 200) {
 		  	var responseObject = JSON.parse(body);
-		  	var terms = responseObject.queries.request.searchTerms;
+		  	var terms = searchTerm; //responseObject.queries.request.searchTerms;
 		  	var items = responseObject.items;
 		  	
 		  	var ws = new app.WebSearch({query: terms});
+		  	var cs = new app.ClientWebSearch({clientId: "SERVER"});
 		  	
 		  	for (var i=0; i<items.length; i++) {
 		  		var el = items[i];
@@ -41,10 +43,10 @@ models.defineModels(mongoose, function() {
 					, briefDescription: el.snippet
 		  		});
 		  		//wsr.save(function(err, newObj) {
-		  			ws.results.push(wsr);
+		  			cs.results.push(wsr);
 		  		//});
 		  	}
-		  	
+		  	ws.searches.push(cs);
 		  	/*
 		  	items.forEach(function(el, idx ar) {
 		  		var wsr = new app.WebSearchResult({
@@ -59,7 +61,7 @@ models.defineModels(mongoose, function() {
 		  	*/
 		  	
 		  	ws.save(function(err, newObj) {
-		  		//TODO: exit;
+		  		process.exit();
 		  	});
 
 		  }
