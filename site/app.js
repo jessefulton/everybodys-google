@@ -4,9 +4,9 @@ var request = require('request')
 	, express = require('express')
 	, stylus = require('stylus')
 	, nib = require('nib')
-	, async = require('async')
-	, jquery = require('jquery')
-	, jsdom = require('jsdom');
+	//, jquery = require('jquery')
+	//, jsdom = require('jsdom')
+	, async = require('async');
 
 	
 var mongoose = require('mongoose')
@@ -19,6 +19,7 @@ var app = express.createServer();
 models.defineModels(mongoose, function() {
 	app.WebSearch = mongoose.model('websearch');
 	app.WebSearchResult = mongoose.model('websearchresult');
+	app.ClientWebSearch = mongoose.model('clientwebsearch');
 	mongoose.connect('mongodb://' + conf.db.uri);
 });
 
@@ -61,7 +62,6 @@ app.get('/', function (req, res) {
 
 app.get('/searches/:pageNumber?', function(req, res) {
 	var pgNum = req.params.pageNumber;
-	console.log(pgNum);
 	var query = {};
 	var fields = {};
 	var opts = {sort: [['date', "ascending"]], limit:100};
@@ -117,35 +117,37 @@ app.get('/about', function (req, res) {
 
 
 app.post('/api/results', function(req, res) {
-	console.log(req.body);
-	res.json({"status":"OK"});
-
-/*
+	console.log("trying to post result for " + req.body.clientId);
 	try {
-		var ws = new app.WebSearch({query: req.body.query, clientId: req.body.clientId});
-		var items = req.body.results;
-
-		items = [
-			{ "title": "test title", "link": "http://foo", "snippet": "brief description" }
-			, { "title": "test title2", "link": "http://foo2", "snippet": "brief description 2" }
-		];
-
-		for (var i=0; i<items.length; i++) {
-			var el = items[i];
-			ws.results.push(new app.WebSearchResult({
-				title: el.title
-				, url: el.link
-				, briefDescription: el.snippet
-			}));
-		}
-		ws.save(function(err, obj) {
-			if (err) { throw Error(); }
-			res.json({"status": "OK"});
+		app.WebSearch.findOne({query: req.body.query}, function(err, ws) {
+			if (err || !ws) {
+				ws = new app.WebSearch({query: req.body.query});
+			}
+			var cws = new app.ClientWebSearch({clientId: req.body.clientId});
+			var items = req.body.results;
+	
+			for (var i=0; i<items.length; i++) {
+				var el = items[i];
+				cws.results.push(new app.WebSearchResult({
+					title: el.title
+					, url: el.link
+					, briefDescription: el.snippet
+				}));
+			}
+			
+			ws.searches.push(cws);
+			
+			ws.save(function(err, obj) {
+				if (err) { throw Error(); }
+				res.json({"status": "OK"});
+			});
 		});
+
 	} catch(e) {
+		console.log(e);
+		console.log(e.message);
 		res.json({"status": "error"}, 500);
 	}
-*/
 
 	/*
 	async.waterfall({

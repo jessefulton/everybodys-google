@@ -30,8 +30,22 @@ models.defineModels(mongoose, function() {
 		  	var responseObject = JSON.parse(body);
 		  	var terms = searchTerm; //responseObject.queries.request.searchTerms;
 		  	var items = responseObject.items;
-		  	
-		  	var ws = new app.WebSearch({query: terms});
+			var ws = null;
+			app.WebSearch.findOne({"query": terms}, function(err, foundObj) {
+				if (err || !foundObj) {
+					ws = new app.WebSearch({query: terms});
+				}
+				else {
+					ws = foundObj;
+				}
+			});
+
+			if (!ws) {
+				ws = new app.WebSearch({query: terms});
+			}
+
+			console.log(ws);
+
 		  	var cs = new app.ClientWebSearch({clientId: "SERVER"});
 		  	
 		  	for (var i=0; i<items.length; i++) {
