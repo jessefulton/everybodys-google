@@ -2,8 +2,8 @@ h1 All Searches
 
 
 .searches
-	each clientSearch in websearch.searches
-		.search
+	each clientSearch, i in websearch.searches
+		div(class="search search-#{i}")
 			h2 #{clientSearch.clientId}
 			each result in clientSearch.results
 				.result
