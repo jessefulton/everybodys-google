@@ -4,7 +4,9 @@ var request = require('request')
 	, express = require('express')
 	, stylus = require('stylus')
 	, nib = require('nib')
-	, async = require('async');
+	, async = require('async')
+	, jquery = require('jquery')
+	, jsdom = require('jsdom');
 
 	
 var mongoose = require('mongoose')
@@ -54,6 +56,50 @@ app.get('/', function (req, res) {
 	else {
 		res.redirect('/lobby');
 	}
+});
+
+
+app.get('/searches/:pageNumber?', function(req, res) {
+	var pgNum = req.params.pageNumber;
+	console.log(pgNum);
+	var query = {};
+	var fields = {};
+	var opts = {sort: [['date', "ascending"]], limit:100};
+	app.WebSearch.find(query, fields).sort('time_start',-1).limit(100).execFind(function(err, results) {
+		if (!err) {
+			//TODO: if games empty, display message
+			res.render('search-view-all', {
+				layout: true
+				, locals: { 
+					"bodyClasses": "history"
+					, "searches": results
+				}
+			});
+		}
+		else {
+			console.log(err);
+			res.send('couldn\'t find anthying', 404);
+		}
+	});
+});
+
+app.get('/search/:id', function(req, res) {
+	app.WebSearch.findById(req.params.id, function(err, result) {
+		if (!err) {
+			//TODO: if games empty, display message
+			res.render('search-view', {
+				layout: true
+				, locals: { 
+					"bodyClasses": "history"
+					, "websearch": result
+				}
+			});
+		}
+		else {
+			console.log(err);
+			res.send('couldn\'t find anthying', 404);
+		}
+	});
 });
 
 
