@@ -50,6 +50,8 @@ function defineModels(mongoose, fn) {
   mongoose.model('websearchresult', WebSearchResult);
   mongoose.model('websearch', WebSearch);
   mongoose.model('clientwebsearch', ClientWebSearch);
+  mongoose.model('websearchqueryqueue', WebSearchQueryQueue);
+
 
   fn();
 }
