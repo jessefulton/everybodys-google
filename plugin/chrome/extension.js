@@ -12,7 +12,14 @@ $(function() {
 			var query = $("#lst-ib").attr("value");
 			var results = [];
 			$("#search li").each(function() {
-				results.push($(this).html());
+				//link first anchor tag
+				//title h3
+				//description span.st
+				var link = $(this).find("a:first").attr("href");
+				var title = $(this).find("h3:first").text();
+				var snippet = $(this).find("span.st").text();
+				
+				results.push({"title": title, "link": link, "snippet": snippet, "rawHTML": $(this).html()});
 			});
 			var clientId = "TEST";
 			var data = {"query":query, "results":results, "clientId":clientId};
@@ -21,7 +28,7 @@ $(function() {
 			chrome.extension.sendRequest({"type": "results", "data": data}, function(response) {
 				console.log("RESPONSE STATUS: " + response.status);
 			});
-		}, 100);
+		}, 300);
 	};
 
 	$("#lst-ib").change(function() {

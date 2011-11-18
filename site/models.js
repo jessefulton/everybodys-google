@@ -5,6 +5,14 @@ function defineModels(mongoose, fn) {
 	var Schema = mongoose.Schema,
 		ObjectId = Schema.ObjectId;
 
+
+	var WebSearchQueryQueue = new Schema({
+		created: {type: Date, default: Date.now}
+		, query: String
+	});
+	WebSearchQueryQueue.virtual('id')
+		.get(function() { return this._id.toHexString(); });
+
 	
 	var WebSearchScore = new Schema({
 		//this is where we add liberal/conservative, happy/sad, etc...
@@ -16,6 +24,7 @@ function defineModels(mongoose, fn) {
 		, briefDescription: String
 		, pageContent: String
 		, scores: [WebSearchScore]
+		, rawHTML: String
 	});
 	WebSearchResult.virtual('id')
 		.get(function() { return this._id.toHexString(); });
