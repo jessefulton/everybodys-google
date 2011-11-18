@@ -1,0 +1,6 @@
+h1 All Searches
+
+
+ul
+	each search in searches
+		li: a(href='/search/#{search.id}') #{search.query}
