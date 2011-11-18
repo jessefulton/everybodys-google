@@ -1,0 +1,11 @@
+h1 All Searches
+
+
+.searches
+	each clientSearch in websearch.searches
+		.search
+			h2 #{clientSearch.clientId}
+			each result in clientSearch.results
+				.result
+					h3: a(href=result.url) #{result.title}
+					p #{result.briefDescription}
