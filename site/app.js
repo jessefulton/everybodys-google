@@ -20,6 +20,7 @@ models.defineModels(mongoose, function() {
 	app.WebSearch = mongoose.model('websearch');
 	app.WebSearchResult = mongoose.model('websearchresult');
 	app.ClientWebSearch = mongoose.model('clientwebsearch');
+	app.WebSearchQueryQueue = mongoose.model('websearchqueryqueue');
 	mongoose.connect('mongodb://' + conf.db.uri);
 });
 
@@ -122,6 +123,10 @@ app.post('/api/results', function(req, res) {
 		app.WebSearch.findOne({query: req.body.query}, function(err, ws) {
 			if (err || !ws) {
 				ws = new app.WebSearch({query: req.body.query});
+				var q = new app.WebSearchQueryQueue({query: req.body.query});
+				q.save(function(err,newObj){
+					console.log("Added item to queue: " + newObj.query);
+				});
 			}
 			var cws = new app.ClientWebSearch({clientId: req.body.clientId});
 			var items = req.body.results;
