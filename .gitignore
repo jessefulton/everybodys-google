@@ -1,3 +1,5 @@
 .DS_Store
 *.css
 */node_modules/*
+/site/conf/*
+!/site/conf/template.js
