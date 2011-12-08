@@ -32,6 +32,9 @@ models.defineModels(mongoose, function() {
 	app.ClientWebSearch = mongoose.model('clientwebsearch');
 	app.WebSearchQueryQueue = mongoose.model('websearchqueryqueue');
 	mongoose.connect('mongodb://' + conf.db.uri);
+    mongoose.connection.on("open", function() {
+        console.log("opened connection to database!");
+    });
 });
 
 
@@ -279,13 +282,14 @@ app.helpers({
 
 
 
-
 /**
- * App listen.
+ * Start it.
  */
-app.listen(conf.port, function () {
-	var addr = app.address();
+var port = process.env.PORT || 3000;
+app.listen(port, function () {
+    var addr = app.address();
 	console.log('	 app listening on http://' + addr.address + ':' + addr.port);
-	console.log('	NODE_ENV = ' + process.env.NODE_ENV);
+    console.log('	NODE_ENV = ' + process.env.NODE_ENV);
 });
+
 
