@@ -1,12 +1,23 @@
-var conf = require('./conf');
-var request = require('request');
+/**
+ * This script runs the Google Custom Search queries as a cron task.
+ * On the free tier, you're limited to 100 queries/day, so I've set
+ * this up to run at 15 minute intervals.
+ */
+
+if (!process.env.NODE_ENV) process.env.NODE_ENV = 'development';
+
+var conf = require('./conf/' + process.env.NODE_ENV);
 var models = require('./models');
+
+var request = require('request'),
+	loggly = require('loggly');
 
 var mongoose = require('mongoose')
 	, Schema = mongoose.Schema
 	, ObjectId = mongoose.SchemaTypes.ObjectId;
 
 
+var client = loggly.createClient(conf.loggly);
 var app = {};
 
 
@@ -43,7 +54,7 @@ models.defineModels(mongoose, function() {
 						}
 						else {
 							console.log("Couldn't find record for " + terms);
-							ws = new app.WebSearch({query: terms});
+							ws = new app.WebSearch({"query": terms});
 						}
 			
 						var cs = new app.ClientWebSearch({clientId: "SERVER"});
@@ -77,7 +88,12 @@ models.defineModels(mongoose, function() {
 						ws.save(function(err, newObj) {
 							queuedQuery.remove(function(err){
 								console.log("Saved new search, removed old from queue");
-								process.exit();
+								client.log(conf.loggly.inputKey, 'Machine search for term "' + newObj.query + '" successful.', function (err, result) {
+								    if(err) {
+								    	console.log(err);
+								    }
+									process.exit();
+								});
 							});
 						});
 						

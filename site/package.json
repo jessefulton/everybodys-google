@@ -1,0 +1,19 @@
+{
+    "name": "EverybodysGoogle"
+  , "description": "Browser plugin"
+  , "version": "0.0.1"
+  , "dependencies": {
+        "async": "0.1.15"
+      , "contextify": "0.0.6"
+      , "express": "2.5.0"
+      , "jade": "0.17.0"
+      , "jquery": "1.6.3"
+      , "jsdom": "0.2.9"
+      , "lazy": "1.0.7"
+      , "loggly": "0.3.10"
+      , "mongoose": "2.3.10"
+      , "nib": "0.2.0"
+      , "request": "2.1.1"
+      , "stylus": "0.19.2"
+    }
+}

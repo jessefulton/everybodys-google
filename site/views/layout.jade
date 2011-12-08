@@ -3,12 +3,9 @@ html(lang='en')
 	head
 		title #{siteName}
 		meta(http-equiv="Content-Type", content="text/html; charset=UTF-8")
-		link(href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/base/jquery-ui.css", rel="stylesheet")
-		link(href="/stylesheets/jquery-ui/jquery-ui-1.8.16.custom.css", rel="stylesheet")
 		link(href='/stylesheets/style.css', rel='stylesheet')
-		
-		script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js')
-		script(src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js')
+	- if (typeof(bodyClasses) == 'undefined')
+		- bodyClasses = ""
 	body(class=bodyClasses)
 		#header
 			h1 #{siteName}

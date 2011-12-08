@@ -3,4 +3,6 @@ h1 All Searches
 
 ul
 	each search in searches
-		li: a(href='/search/#{search.id}') #{search.query}
+		li
+			a(href='/search/#{search.id}') #{search.query}
+			&nbsp; \(#{search.searches.length}\)
