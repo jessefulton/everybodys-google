@@ -5,7 +5,6 @@
  *
  *
  */
-
 var conf = require('./config');
 var models = require('./models');
 var request = require('request')
@@ -57,7 +56,8 @@ app.configure(function () {
 	
 	app.use(app.router);
 
-	//app.set('views', __dirname);
+	app.set('views', __dirname+"/views");
+
 	app.set('view engine', 'jade');
 
 	function compile (str, path) {
