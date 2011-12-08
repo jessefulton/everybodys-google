@@ -5,7 +5,9 @@ function defineModels(mongoose, fn) {
 	var Schema = mongoose.Schema,
 		ObjectId = Schema.ObjectId;
 
-
+	/**
+	 * These are items which the server still needs to look up
+	 */
 	var WebSearchQueryQueue = new Schema({
 		created: {type: Date, default: Date.now}
 		, query: String
@@ -13,23 +15,23 @@ function defineModels(mongoose, fn) {
 	WebSearchQueryQueue.virtual('id')
 		.get(function() { return this._id.toHexString(); });
 
-	
-	var WebSearchScore = new Schema({
-		//this is where we add liberal/conservative, happy/sad, etc...
-	});
-	
+	/**
+	 * The actual search result items (web pages)
+	 */
 	var WebSearchResult = new Schema({
 		title: String
 		, url: String
 		, briefDescription: String
 		, pageContent: String
-		, scores: [WebSearchScore]
 		, rawHTML: String
 	});
 	WebSearchResult.virtual('id')
 		.get(function() { return this._id.toHexString(); });
 	
 	
+	/**
+	 * A search query result for a particular client (plugin, server, etc.)
+	 */
 	var ClientWebSearch = new Schema({
 		created: {type: Date, default: Date.now}
 		, url: String
@@ -37,6 +39,9 @@ function defineModels(mongoose, fn) {
 		, results: [WebSearchResult]	
 	});
 	
+	/**
+	 * Search query and affiliated client searches
+	 */
 	var WebSearch = new Schema({
 		created: {type: Date, default: Date.now}
 		, query: String

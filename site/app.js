@@ -1,4 +1,14 @@
-var conf = require('./conf');
+/***
+ *
+ *
+ *
+ *
+ *
+ */
+
+if (!process.env.NODE_ENV) process.env.NODE_ENV = 'development';
+
+var conf = require('./conf/' + process.env.NODE_ENV);
 var models = require('./models');
 var request = require('request')
 	, express = require('express')
@@ -33,9 +43,17 @@ models.defineModels(mongoose, function() {
 app.configure(function () {
 	app.use(stylus.middleware({ src: __dirname + '/public', compile: compile }))
 	app.use(express.static(__dirname + '/public'));
-	app.use(express.cookieParser());
 	app.use(express.bodyParser());
-	app.use(express.session({ secret: 'ggiHoalO'}));
+	app.use(express.favicon());
+
+	// "app.router" positions our routes 
+	// above the middleware defined below,
+	// this means that Express will attempt
+	// to match & call routes _before_ continuing
+	// on, at which point we assume it's a 404 because
+	// no route has handled the request.
+	
+	app.use(app.router);
 
 	//app.set('views', __dirname);
 	app.set('view engine', 'jade');
@@ -46,6 +64,22 @@ app.configure(function () {
 			.use(nib());
 	};
 });
+
+
+
+
+app.configure('development', function(){
+    app.use(express.static(__dirname + '/public'));
+	app.use(express.logger('dev'));
+    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+});
+
+app.configure('production', function(){
+  var oneYear = 31557600000;
+  app.use(express.static(__dirname + '/public', { maxAge: oneYear }));
+  app.use(express.errorHandler());
+});
+
 
 
 /**
@@ -66,6 +100,7 @@ app.get('/searches/:pageNumber?', function(req, res) {
 	var query = {};
 	var fields = {};
 	var opts = {sort: [['date', "ascending"]], limit:100};
+	console.log("looking for searches");
 	app.WebSearch.find(query, fields).sort('time_start',-1).limit(100).execFind(function(err, results) {
 		if (!err) {
 			//TODO: if games empty, display message
@@ -120,10 +155,11 @@ app.get('/about', function (req, res) {
 app.post('/api/results', function(req, res) {
 	console.log("trying to post result for " + req.body.clientId);
 	try {
-		app.WebSearch.findOne({query: req.body.query}, function(err, ws) {
+		var queryTerm = req.body.query.toLowerCase();
+		app.WebSearch.findOne({query: queryTerm}, function(err, ws) {
 			if (err || !ws) {
-				ws = new app.WebSearch({query: req.body.query});
-				var q = new app.WebSearchQueryQueue({query: req.body.query});
+				ws = new app.WebSearch({query: queryTerm});
+				var q = new app.WebSearchQueryQueue({query: queryTerm});
 				q.save(function(err,newObj){
 					console.log("Added item to queue: " + newObj.query);
 				});
@@ -139,13 +175,51 @@ app.post('/api/results', function(req, res) {
 					, briefDescription: el.snippet
 				}));
 			}
+
+			//results may change on based on user, geography, time, etc.
+			//we just want to see if the same results have been stored, regardless
 			
-			ws.searches.push(cws);
+			//this looks at Google News results, so that may inflate number of "differences" in search results
 			
-			ws.save(function(err, obj) {
-				if (err) { throw Error(); }
-				res.json({"status": "OK"});
-			});
+			var existingResult = false;
+
+			var foundIndex = -1;
+
+			for (var i=0; i < ws.searches.length; i++) {
+				var existingResults = ws.searches[i].results;
+				var newResults = cws.results;
+				var match = true;
+				console.log("CHECKING RESULT SETS");
+				for (var j=0; j < Math.min(existingResults.length, newResults.length); j++) {
+					console.log("\tchecking urls:\n\t\t" + existingResults[j].url.toLowerCase() + "\n\t\t" + newResults[j].url.toLowerCase());
+					if (existingResults[j].url.toLowerCase() == newResults[j].url.toLowerCase()) {
+						match = false;
+						break;
+					}
+				}
+				
+				if (match) { 
+					foundIndex = i;
+					existingResult = true; 
+					break;
+				}
+			}
+			
+			
+			if (!existingResult) {
+				ws.searches.push(cws);
+				//we don't car about saving synchronously here...
+				ws.save(function(err, obj) {
+					if (err) { throw Error(); }
+				});				
+			}
+			else {
+				ws.searches.splice(foundIndex, 1);
+				console.log("These search results were found before!");
+			}
+			console.log("SENDING STATUS OK");
+			console.log(ws);
+			res.json({"status": "OK", "data": ws});
 		});
 
 	} catch(e) {
@@ -154,24 +228,37 @@ app.post('/api/results', function(req, res) {
 		res.json({"status": "error"}, 500);
 	}
 
-	/*
-	async.waterfall({
-	  	ws.save(function(err, newObj) {
-	  		//TODO: exit;
-	  	});
-	}, function(err) {});
-	
-	res.json({"clientId" : req.body.clientId
-		, "query": req.body.query
-		, "results": req.body.results
-	});
-	*/
 });
 
 
+//=== ERROR HANDLING
+function NotFound(msg){
+  this.name = 'NotFound';
+  Error.call(this, msg);
+  Error.captureStackTrace(this, arguments.callee);
+}
+
+NotFound.prototype.__proto__ = Error.prototype;
+
+app.get('/404', function(req, res){
+  throw new NotFound;
+});
+
+app.get('/500', function(req, res){
+  throw new Error('keyboard cat!');
+});
+
+app.error(function(err, req, res, next){
+    if (err instanceof NotFound) {
+        res.render('404.jade');
+    } else {
+    	res.render('500.jade');
+        //next(err);
+    }
+});
 
 
-
+//=== APPLICATION HELPERS
 app.helpers({
 		dateFormat: function(dateObj){ 
 			return dateObj.getMonth() + "/" + dateObj.getDate() + "/" + dateObj.getFullYear();
