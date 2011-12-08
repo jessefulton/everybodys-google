@@ -1,17 +1,8 @@
+//TO USE THIS FILE, ADD YOUR OPTIONS BELOW AND RENAME TO config.js
 module.exports = {
-	google: {
-		apiKey: ""
-		, cseId: ""
-	}
-	, db: {
-		uri: ""
-	}
-	, port: "3000"
-	, domain: "localhost"
-	, scheme: "http"
-	, loggly: {
-		subdomain: "your-subdomain",
-		inputKey: "your-input-key",
-		json: true
-	}
+	GOOGLE_API_KEY: ""
+	, GOOGLE_CSE_ID: ""
+	, MONGODB_URI: ""
+	, LOGGLY_SUBDOMAIN: ""
+	, LOGGLY_INPUT_KEY: ""
 };

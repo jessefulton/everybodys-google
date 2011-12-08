@@ -6,7 +6,7 @@
 
 if (!process.env.NODE_ENV) process.env.NODE_ENV = 'development';
 
-var conf = require('./conf/' + process.env.NODE_ENV);
+var conf = require('./config');
 var models = require('./models');
 
 var request = require('request'),
@@ -16,10 +16,12 @@ var mongoose = require('mongoose')
 	, Schema = mongoose.Schema
 	, ObjectId = mongoose.SchemaTypes.ObjectId;
 
-
-var client = loggly.createClient(conf.loggly);
 var app = {};
 
+
+var config = conf.init();
+
+var client = loggly.createClient({subdomain: config.LOGGLY_SUBDOMAIN, json: true});
 
 //http://www.emoteapi.appspot.com/api
 
@@ -28,11 +30,11 @@ models.defineModels(mongoose, function() {
 	app.WebSearchResult = mongoose.model('websearchresult');
 	app.ClientWebSearch = mongoose.model('clientwebsearch');
 	app.WebSearchQueryQueue = mongoose.model('websearchqueryqueue');
-	mongoose.connect('mongodb://' + conf.db.uri);
+	mongoose.connect('mongodb://' + config.MONGODB_URI);
 	mongoose.connection.on("open", function() {
 	
 	
-		var apiUrl = "https://www.googleapis.com/customsearch/v1?key=" + conf.google.apiKey + "&cx=" + conf.google.cseId + "&alt=json";
+		var apiUrl = "https://www.googleapis.com/customsearch/v1?key=" + config.GOOGLE_API_KEY + "&cx=" + config.GOOGLE_CSE_ID + "&alt=json";
 		
 		
 		app.WebSearchQueryQueue.findOne({}, function(err, queuedQuery) {
@@ -88,7 +90,7 @@ models.defineModels(mongoose, function() {
 						ws.save(function(err, newObj) {
 							queuedQuery.remove(function(err){
 								console.log("Saved new search, removed old from queue");
-								client.log(conf.loggly.inputKey, 'Machine search for term "' + newObj.query + '" successful.', function (err, result) {
+								client.log(config.LOGGLY_INPUT_KEY, 'Machine search for term "' + newObj.query + '" successful.', function (err, result) {
 								    if(err) {
 								    	console.log(err);
 								    }
