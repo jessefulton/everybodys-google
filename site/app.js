@@ -6,9 +6,7 @@
  *
  */
 
-if (!process.env.NODE_ENV) process.env.NODE_ENV = 'development';
-
-var conf = require('./conf/' + process.env.NODE_ENV);
+var conf = require('./config');
 var models = require('./models');
 var request = require('request')
 	, express = require('express')
@@ -18,6 +16,7 @@ var request = require('request')
 	//, jsdom = require('jsdom')
 	, async = require('async');
 
+var config = conf.init();
 	
 var mongoose = require('mongoose')
 	, Schema = mongoose.Schema
@@ -31,7 +30,7 @@ models.defineModels(mongoose, function() {
 	app.WebSearchResult = mongoose.model('websearchresult');
 	app.ClientWebSearch = mongoose.model('clientwebsearch');
 	app.WebSearchQueryQueue = mongoose.model('websearchqueryqueue');
-	mongoose.connect('mongodb://' + conf.db.uri);
+	mongoose.connect('mongodb://' + config.MONGODB_URI);
     mongoose.connection.on("open", function() {
         console.log("opened connection to database!");
     });
