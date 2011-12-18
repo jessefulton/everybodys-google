@@ -1,13 +1,17 @@
 {
-  "name": "My First Extension",
-  "version": "1.0",
-  "description": "The first extension that I made.",
-  "background_page": "background.html",
-  "content_scripts": [
-    {
-      "matches": ["https://www.google.com/*"],
-      "js": ["jquery-1.7.js", "extension.js"]
-    }
-  ],
-  "permissions": ["http://*/*","https://*/*"]
+	"name": "Everybody's Google",
+	"version": "0.1",
+	"description": "Everybody's Google extension.",
+	"icons": { "16": "icon16.png",
+					 "48": "icon48.png",
+					"128": "icon128.png" },
+	"background_page": "background.html",
+	"content_scripts": [
+		{
+			"matches": ["http://*/*", "https://*/*"],
+			"css": ["style.css"],
+			"js": ["jquery-1.7.js", "extension.js"]
+		}
+	],
+	"permissions": ["http://*/*","https://*/*"]
 }

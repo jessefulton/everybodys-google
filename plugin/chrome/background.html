@@ -9,6 +9,8 @@
 				//TODO: handle error response from AJAX?
 				$.post("http://localhost:3000/api/results", data,
 					function(responseObj) {
+						console.log("responseObj");
+						console.log(responseObj);
 						sendResponse(responseObj);
 				}, "JSON");
 			}
@@ -17,24 +19,5 @@
 				sendResponse({});
 			}
 		});
-	  
-	  
-	  
-	  
-	/*  
-		function sendResults(clientId, query, results, callback) {
-				$.post(
-					"http://localhost:3000/api/results", 
-					{ 
-						"query": query
-						, "clientId": clientId 
-						, "results": results
-					},
-				   function(data) {
-					 callback(data);
-				   }
-				   , "JSON");
-		}
-	*/
 	</script>
 </html>
