@@ -17,9 +17,7 @@
 	
 	
 	var xhr = new XMLHttpRequest();
-	alert(xhr.open);
-	
-	
+
 	var mySend = function(a) {
 		var xhr = this;
 		
