@@ -1,5 +1,21 @@
 //TODO: implement $.tmpl() - http://api.jquery.com/jquery.tmpl/    http://api.jquery.com/template-tag-tmpl/
 $(function() {
+
+
+	(function(){
+		if ($("#EGSEARCH").size() > 0){
+			console.log("adding onchange");
+			$("#EGSEARCH").change(function() {
+				console.log("hidden input changed");
+				//console.log(this.value);
+			});
+			
+		} else {
+			console.log('setting timeout');
+			window.setTimeout(arguments.callee,200);
+		}
+	})();
+
 	var documentWidth = $(document).width();
 	var logChange = function(instr) {
 		window.setTimeout(function() {
@@ -69,3 +85,4 @@ $(function() {
 
 
 
+var EVERYBODYSGOOGLE = function(str) { alert(str); }
