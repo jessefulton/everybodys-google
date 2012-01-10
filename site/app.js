@@ -98,19 +98,31 @@ app.get('/', function (req, res) {
 
 
 app.get('/searches/:pageNumber?', function(req, res) {
-	var pgNum = req.params.pageNumber;
+	var pgNum = req.params.pageNumber ? req.params.pageNumber : 1;
+	var nPerPage = 100;
 	var query = {};
 	var fields = {};
 	var opts = {sort: [['date', "ascending"]], limit:100};
 	console.log("looking for searches");
-	app.WebSearch.find(query, fields).sort('time_start',-1).limit(100).execFind(function(err, results) {
+
+ 	app.WebSearch.find(query, fields).sort('time_start',-1).skip((pgNum-1)*nPerPage).limit(nPerPage).execFind(function(err, results) {
 		if (!err) {
-			//TODO: if games empty, display message
-			res.render('search-view-all', {
-				layout: true
-				, locals: { 
-					"bodyClasses": "history"
-					, "searches": results
+			app.WebSearch.count(function(err2, cnt) {
+				if (err2) {
+					console.log(err2);
+					res.send('error finding count', 500);
+				} else {
+					pageCount = Math.ceil(cnt / nPerPage);
+					//TODO: if games empty, display message
+					res.render('search-view-all', {
+						layout: true
+						, locals: { 
+							"bodyClasses": "history"
+							, "searches": results
+							, "pageCount": pageCount
+						}
+					});
+
 				}
 			});
 		}
