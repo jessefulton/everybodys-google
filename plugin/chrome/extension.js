@@ -1,19 +1,48 @@
 //TODO: implement $.tmpl() - http://api.jquery.com/jquery.tmpl/    http://api.jquery.com/template-tag-tmpl/
 $(function() {
 
-	var documentWidth = $(document).width();
-	var logChange = function(instr) {
+
+	var cleanUrl = function(_url) {
+		if (_url.indexOf("google.com/") != -1) {
+			if (_url.indexOf("url?") != -1) {
+				console.log("google url: " + _url);
+				//TODO: SOMETHING!
+				return _url;
+			}
+		}
+		else {
+			console.log("NON-GOOGLE! " + _url);
+			//TODO: SOMETHING!
+			return _url;
+		}
+	}
+
+	var documentWidth = $(document).width();	
+	var logClick = function(clickedAnchor) {
 		window.setTimeout(function() {
 			var query = $("#lst-ib").attr("value");
 			var results = [];
 			$("#search li").each(function() {
 				//don't capture news (jQuery.each cannot "break" or "continue")
 				if ($(this).id == "newsbox") { return true };
-				var link = $(this).find("a:first").attr("href");
+				var link = cleanUrl($(this).find("a:first").attr("href"));
 				var title = $(this).find("h3:first").text();
 				var snippet = $(this).find("span.st").text();
 				results.push({"title": title, "link": link, "snippet": snippet, "rawHTML": $(this).html()});
 			});
+			
+			var clicked = null;
+			
+			if (clickedAnchor) {
+				var prnt = $(clickedAnchor).closest("li.g");
+				var link = cleanUrl(prnt.find("a:first").attr("href"));
+				var title = prnt.find("h3:first").text();
+				var snippet = prnt.find("span.st").text();
+				clicked = {"title": title, "link": link, "snippet": snippet, "rawHTML": $(this).html()};
+				console.log(clicked);
+			}
+			
+			//TODO: generate guid or remove all identifiers
 			var clientId = "TEST";
 			var data = {"query":query, "results":results, "clientId":clientId};
 			
@@ -41,6 +70,43 @@ $(function() {
 		}, 300);
 	};
 
+	var logResults = function() { logClick(null); }
+
+
+	
+	$(document).on("click", "#search a", function() {
+		logClick($(this));
+		var _url = $(this).attr("href").toLowerCase();
+		console.log('clicky ' + cleanUrl(_url));
+		//if url LIKE google.com/url?
+			//find "url" query param & unescape
+		//else if NOT LIKE google.com
+			//send url
+	});
+
+	$("#lst-ib").change(function() {
+		logResults($(this).attr("value"));
+	}).keyup(function(e) { 
+		if(e.keyCode == 13) { 
+			logResults($(this).attr("value"));
+		} 
+	}); 
+	$("#main").next("table").click(function() {
+		logResults($("#lst-ib").attr("value"));
+	});
+	
+	$(document).on("click","#egopen", function() {
+		var moveBy = "-=" + $("#everybodysgoogle").width() + "px";
+		//var left = $("#center_col").css("margin-left");
+		console.log('opening pane'); 
+		$("#everybodysgoogle").animate({"left": moveBy});
+	});
+	$(document).on("click", "#egclose", function() { 
+		console.log('closing pane'); 
+		var moveBy = "+=" + $("#everybodysgoogle").width() + "px";
+		$("#everybodysgoogle").animate({"left": moveBy});
+	});	
+
 
 
 	/*
@@ -57,65 +123,6 @@ $(function() {
 		}
 	})();
 	*/
-	
-	/*
-	document.body.addEventListener('click',function(evt) {
-		
-		console.log(evt.target);
-		console.log(evt.currentTarget);
-		console.log(evt.srcElement);
-		console.log(evt.toElement);
-		
-		var tgt = evt.target;
-		var prnt = tgt.parentNode;
-		if (tgt.parentNode.localName.toUpperCase() == "A") { tgt = prnt; }
-		if (tgt.localName.toUpperCase() == "A") {
-			console.log(tgt.href);
-		}
-	},true)
-	*/
-	
-	$(document).on("click", "#search a", function() {
-		
-		var _url = $(this).attr("href").toLowerCase();
-		console.log('clicky');
-		if (_url.indexOf("google.com/") != -1) {
-			if (_url.indexOf("url?") != -1) {
-				console.log("google url: " + _url);
-			}
-		}
-		else {
-			console.log("NON-GOOGLE! " + _url);
-		}
-		//if url LIKE google.com/url?
-			//find "url" query param & unescape
-		//else if NOT LIKE google.com
-			//send url
-	});
-
-	$("#lst-ib").change(function() {
-		logChange($(this).attr("value"));
-	}).keyup(function(e) { 
-		if(e.keyCode == 13) { 
-			logChange($(this).attr("value"));
-		} 
-	}); 
-	$("#main").next("table").click(function() {
-		logChange($("#lst-ib").attr("value"));
-	});
-	
-	$(document).on("click","#egopen", function() {
-		var moveBy = "-=" + $("#everybodysgoogle").width() + "px";
-		//var left = $("#center_col").css("margin-left");
-		console.log('opening pane'); 
-		$("#everybodysgoogle").animate({"left": moveBy});
-	});
-	$(document).on("click", "#egclose", function() { 
-		console.log('closing pane'); 
-		var moveBy = "+=" + $("#everybodysgoogle").width() + "px";
-		$("#everybodysgoogle").animate({"left": moveBy});
-	});	
-
 	//$("body").append("<script type='text/javascript' src='" + chrome.extension.getURL('ajax.js') + "'></script>");
 
 });
