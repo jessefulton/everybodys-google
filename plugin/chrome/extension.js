@@ -1,21 +1,6 @@
 //TODO: implement $.tmpl() - http://api.jquery.com/jquery.tmpl/    http://api.jquery.com/template-tag-tmpl/
 $(function() {
 
-
-	(function(){
-		if ($("#EGSEARCH").size() > 0){
-			console.log("adding onchange");
-			$("#EGSEARCH").change(function() {
-				console.log("hidden input changed");
-				//console.log(this.value);
-			});
-			
-		} else {
-			console.log('setting timeout');
-			window.setTimeout(arguments.callee,200);
-		}
-	})();
-
 	var documentWidth = $(document).width();
 	var logChange = function(instr) {
 		window.setTimeout(function() {
@@ -56,6 +41,58 @@ $(function() {
 		}, 300);
 	};
 
+
+
+	/*
+	//monitor ajax requests
+	(function(){
+		if ($("#EGSEARCH").size() > 0){
+			console.log("adding onchange");
+			$("#EGSEARCH").change(function() {
+				console.log("hidden input changed: " + $(this).val());
+			});
+		} else {
+			console.log('setting timeout');
+			window.setTimeout(arguments.callee,200);
+		}
+	})();
+	*/
+	
+	/*
+	document.body.addEventListener('click',function(evt) {
+		
+		console.log(evt.target);
+		console.log(evt.currentTarget);
+		console.log(evt.srcElement);
+		console.log(evt.toElement);
+		
+		var tgt = evt.target;
+		var prnt = tgt.parentNode;
+		if (tgt.parentNode.localName.toUpperCase() == "A") { tgt = prnt; }
+		if (tgt.localName.toUpperCase() == "A") {
+			console.log(tgt.href);
+		}
+	},true)
+	*/
+	
+	$(document).on("click", "#search a", function() {
+		
+		var _url = $(this).attr("href").toLowerCase();
+		console.log('clicky');
+		if (_url.indexOf("google.com/") != -1) {
+			if (_url.indexOf("url?") != -1) {
+				console.log("google url: " + _url);
+			}
+		}
+		else {
+			console.log("NON-GOOGLE! " + _url);
+		}
+		//if url LIKE google.com/url?
+			//find "url" query param & unescape
+		//else if NOT LIKE google.com
+			//send url
+	});
+
 	$("#lst-ib").change(function() {
 		logChange($(this).attr("value"));
 	}).keyup(function(e) { 
@@ -79,10 +116,6 @@ $(function() {
 		$("#everybodysgoogle").animate({"left": moveBy});
 	});	
 
-	$("body").append("<script type='text/javascript' src='" + chrome.extension.getURL('ajax.js') + "'></script>");
+	//$("body").append("<script type='text/javascript' src='" + chrome.extension.getURL('ajax.js') + "'></script>");
 
 });
-
-
-
-var EVERYBODYSGOOGLE = function(str) { alert(str); }

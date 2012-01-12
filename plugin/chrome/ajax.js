@@ -27,7 +27,7 @@
 		dispatchSimpleEvent(egInput, "change", false, false);
 	}
 	var myOpen = function(method, url, async, user, password) {
-		hijackAjax("");
+		//hijackAjax("");
 		// url "/s" = predictive text (search term autocomplete)
 		// url "/search" = search
 		//pq = previous query
@@ -46,35 +46,38 @@
 		
 		//hijackAjax("SENDING: " + a);
 		
-		/* This function would get called when the onload event is called. */ 
+		// This function would get called when the onload event is called.
 		var onload = function() {
-			//console.log(this.responseText);
+			/*
 			try {
+				//console.log(this.responseText);
 				var decoded = decodeHex(this.responseText);
 				console.log(decoded);
 				var obj = eval(decoded);
 				console.log(obj);
 			} catch(e) { console.log(e); }
+			*/
 			//TODO: actually check for this in the right position - either JSONify, or use RegEx
 			if (this.responseText.indexOf('u:"https://www.google.com/search?') != -1) {
+				console.log(this.responseText.indexOf('u:"https://www.google.com/search?'));
 				hijackAjax("RECEIVED DATA"); // + xhr.responseText);
 			}
 		};
 		
-		/* This function is called if there is an error when the onerror event is called. */ 
+		// This function is called if there is an error when the onerror event is called.
 		var onerror = function() { 
-			hijackAjax(""); 
+			hijackAjax("ERROR");
 		};
 		
-		/* Add the load and error events to this function. */ 
+		// Add the load and error events to this function.
 		xhr.addEventListener("load", onload, false);
 		xhr.addEventListener("error", onerror, false);
 		
-		/* Call the original send function. */ 
+		// Call the original send function.
 		xhr.originalSend(a);
 	}
 	
-	/* Store the original function in another variable and call it from within the overriding function. */ 
+	// Store the original function in another variable and call it from within the overriding function.
 	XMLHttpRequest.prototype.originalSend = XMLHttpRequest.prototype.send;
 	XMLHttpRequest.prototype.send = mySend;
 })();

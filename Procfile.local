@@ -1,0 +1,2 @@
+db:		mongod
+web:	always site/app.js
