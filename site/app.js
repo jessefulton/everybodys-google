@@ -59,6 +59,7 @@ app.configure(function () {
 	app.set('views', __dirname+"/views");
 
 	app.set('view engine', 'jade');
+	app.set('view options', { pretty: true });
 
 	function compile (str, path) {
 		return stylus(str)
@@ -189,6 +190,7 @@ app.post('/api/results', function(req, res) {
 					, briefDescription: el.snippet
 				}));
 			}
+			//TODO: if "clicked" add "clicked" WebSearchResult to cws
 
 			//results may change on based on user, geography, time, etc.
 			//we just want to see if the same results have been stored, regardless

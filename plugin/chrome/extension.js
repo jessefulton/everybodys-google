@@ -1,7 +1,6 @@
 //TODO: implement $.tmpl() - http://api.jquery.com/jquery.tmpl/    http://api.jquery.com/template-tag-tmpl/
 $(function() {
 
-
 	var cleanUrl = function(_url) {
 		if (_url.indexOf("google.com/") != -1) {
 			if (_url.indexOf("url?") != -1) {

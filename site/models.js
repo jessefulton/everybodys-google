@@ -36,6 +36,7 @@ function defineModels(mongoose, fn) {
 		created: {type: Date, default: Date.now}
 		, url: String
 		, clientId: String
+		, clicked: [WebSearchResult]
 		, results: [WebSearchResult]	
 	});
 	

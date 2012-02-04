@@ -1,6 +1,9 @@
 <html>
 	<script src='jquery-1.7.js'></script>
 	<script>
+	
+		//TODO: set timeout/interval for running EG queries to match up result sets...
+	
 		chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 			console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
 			if (request.type == "results") {
