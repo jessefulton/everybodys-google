@@ -1,76 +1,65 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html"/>
-<title>3d animation using pure CSS3</title>
-<style type="text/css">
-/* BASIC RESET */
-ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input{margin:0; padding:0;}
-
-
-/* COMMON CLASSES */
-.break { clear:both; }
-
-/* WRAPPER */
-#wrapper { width:960px; margin:40px auto; }
-
-/* CONTENT */
-#content { }
-#content .info { padding:10px; }
-
-/* MOVIE POSTERS */
-#environment { list-style:none; margin:100px 0; height:550px; background-color: transparent; 
-	position:relative;
-	top: 100px; left: 100px;
-	-webkit-perspective: 400; -webkit-perspective-origin: 100px 100px;
-	-webkit-transform-style: preserve-3d;
-	-webkit-transition-property: perspective; -webkit-transition-duration: 0.5s; 
-}
-#environment li { display:inline; float:left;
-	/*
-	position: absolute;
-	width: 400px; height: 400px; background-color: rgba(0, 100, 255, .3);
-	*/
-}
-
-/* #environment li.rota { -webkit-perspective: 500; } */
-	
-#environment li img, #environment li .cubeface { 
-	/*	
-	border:10px solid #fcfafa;
-	-moz-box-shadow:0 3px 10px #888; -webkit-box-shadow:0 3px 10px #888;
-	*/
-	-webkit-transition-property: transform; -webkit-transition-duration: 0.5s; position:absolute; }
-
-#environment li:first-of-type .cubeface { -webkit-transform: rotateY(90deg) translate3d(0, 0, 100px); }
-#environment li:nth-of-type(2) .cubeface { -webkit-transform: rotateY(0deg) translate3d(0, 0, -100px); }
-#environment li:nth-of-type(3) .cubeface { -webkit-transform: rotateY(-90deg) translate3d(0, 0, 100px); }
-
-#environment li.rota img { -webkit-transform: rotateY(0deg); }
-
-
-.cubeface { padding:10px; width:180px; height:180px; margin:0; position:absolute;
-	/* border:10px solid #fcfafa; */
-	/* -moz-box-shadow:0 20px 40px #888; -webkit-box-shadow:0 20px 40px #888; */
-	/*-webkit-transform: translateZ(30px) rotateY(30deg);*/
-	-webkit-transition-property: transform; -webkit-transition-duration: 0.5s; }
-
-#environment li:first-of-type .cubeface { background-color: rgba(0, 0, 255, .5); }
-#environment li:nth-of-type(2) .cubeface { background-color: rgba(255, 255, 0, .5); }
-#environment li:nth-of-type(3) .cubeface { background-color: rgba(255, 0, 0, .5); }
-
-	
-#environment li.rota:first-of-type .cubeface { -webkit-transform: rotateY(0deg) translate3d(0, 0, 100px); }
-#environment li.rota:nth-of-type(2) .cubeface { -webkit-transform: rotateY(-90deg) translate3d(0, 0, -100px); }
-#environment li.rota:nth-of-type(3) .cubeface { -webkit-transform: rotateY(-180deg) translate3d(0, 0, 100px); }
-
-.cubeface h3 { color:#7a3f3a; font-variant: small-caps; font-family:Georgia,serif,Times; text-align:center; padding-bottom:15px; }
-.cubeface p { padding-bottom:15px; }
-.cubeface a { background-color:#7a3f3a; padding:5px 10px; color:#eee; text-decoration:none; display:block; width:80px; text-align:center; margin:0 auto;
-	-moz-border-radius:5px; -webkit-border-radius:5px; }
-.cubeface a:hover, .cubeface a:focus { background-color:#6a191f; color:#fff; }
-</style>
-</head>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html"/>
+		<title>3d animation using pure CSS3</title>
+		<style type="text/css">
+			/* BASIC RESET */
+			ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input{margin:0; padding:0;}
+			
+			
+			/* COMMON CLASSES */
+			.break { clear:both; }
+			
+			/* WRAPPER */
+			#wrapper { width:960px; margin:40px auto; }
+			
+			/* CONTENT */
+			#content { }
+			#content .info { padding:10px; }
+			
+			#toggle-all { cursor: pointer; }
+			
+			/* CUBE */
+			#environment { list-style:none; margin:100px 100px; height:550px; background-color: transparent; 
+				position:relative;
+				-webkit-perspective: 400; -webkit-perspective-origin: 100px 100px;
+				-webkit-transform-style: preserve-3d;
+				-webkit-transition-property: perspective; -webkit-transition-duration: 0.5s; 
+			}
+			#environment li { }
+				
+			#environment li .cubeface { 
+				/*	
+				border:10px solid #fcfafa;
+				-moz-box-shadow:0 3px 10px #888; -webkit-box-shadow:0 3px 10px #888;
+				*/
+				/*-webkit-transition-property: transform; -webkit-transition-duration: 0.5s; position:absolute; */
+			}
+			
+			#environment li:first-of-type .cubeface { -webkit-transform: rotateY(-90deg) translate3d(0, 0, 100px); }
+			#environment li:nth-of-type(2) .cubeface { -webkit-transform: rotateY(0deg) translate3d(0, 0, 100px); }
+			#environment li:nth-of-type(3) .cubeface { -webkit-transform: rotateY(90deg) translate3d(0, 0, 100px); }
+			#environment li:nth-of-type(4) .cubeface { -webkit-transform: rotateY(0deg) translate3d(0, 0, -100px); }
+			
+			.cubeface { padding:10px; width:180px; height:180px; margin:0; position:absolute;
+				/* border:10px solid #fcfafa; */
+				/* -moz-box-shadow:0 20px 40px #888; -webkit-box-shadow:0 20px 40px #888; */
+				/*-webkit-transform: translateZ(30px) rotateY(30deg);*/
+				-webkit-transition-property: transform; -webkit-transition-duration: 0.5s;
+			}
+			
+			#environment li:first-of-type .cubeface { background-color: rgba(0, 0, 255, .5); }
+			#environment li:nth-of-type(2) .cubeface { background-color: rgba(255, 255, 0, .5); }
+			#environment li:nth-of-type(3) .cubeface { background-color: rgba(255, 0, 0, .5); }
+			#environment li:nth-of-type(4) .cubeface { background-color: rgba(0, 255, 0, .5); }
+			
+			#environment li.rota:first-of-type .cubeface { -webkit-transform: rotateY(-180deg) translate3d(0, 0, 100px); }
+			#environment li.rota:nth-of-type(2) .cubeface { -webkit-transform: rotateY(-90deg) translate3d(0, 0, 100px); }
+			#environment li.rota:nth-of-type(3) .cubeface { -webkit-transform: rotateY(0deg) translate3d(0, 0, 100px); }
+			#environment li.rota:nth-of-type(4) .cubeface { -webkit-transform: rotateY(-90deg) translate3d(0, 0, -100px); }
+		</style>
+	</head>
 <body>
 	<div id="wrapper">
 		<div id="content">
@@ -86,15 +75,21 @@ ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input{margin
 					<div class="cubeface">
 					</div>
 				</li>
+				<li>
+					<div class="cubeface">
+					</div>
+				</li>
 			</ul>
 		</div>
 	</div>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script>!window.jQuery && document.write('<script src="/js/jquery-1.7.1.min.js"><\/script>')</script>
 	<script>
+		/*
 		$("#environment li").click(function(){
 			$(this).toggleClass("rota");
 		});
+		*/
 		$("#toggle-all").click(function(){
 			$("#environment li").toggleClass("rota");
 		});
