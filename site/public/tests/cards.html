@@ -7,12 +7,6 @@
 /* BASIC RESET */
 ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input{margin:0; padding:0;}
 
-/* HTML ELEMENTS */
-body { background-color:#deddcd; font:14px/21px Arial,Helvetica,sans-serif; }
-h1 { font: bold 65px/60px Helvetica, Arial, Sans-serif; text-align: center; color: #eee; text-shadow: 0px 2px 6px #333; }
-h1 small{ font-size: 20px; text-transform:uppercase; letter-spacing: 14px; display: block; color: #000; }
-h2 a { display: block; text-decoration: none; margin: 0 0 30px 0; font: italic 45px Georgia, Times, Serif;  text-align: center; color: #bfe1f1; text-shadow: 0px 2px 6px #333; }
-h2 a:hover { color: #90bcd0; }
 
 /* COMMON CLASSES */
 .break { clear:both; }
@@ -25,97 +19,85 @@ h2 a:hover { color: #90bcd0; }
 #content .info { padding:10px; }
 
 /* MOVIE POSTERS */
-#movieposters { list-style:none; margin:100px 0; height:550px; background-color: transparent; 
+#environment { list-style:none; margin:100px 0; height:550px; background-color: transparent; 
 	position:relative;
 	top: 100px; left: 100px;
 	-webkit-perspective: 400; -webkit-perspective-origin: 100px 100px;
 	-webkit-transform-style: preserve-3d;
 	-webkit-transition-property: perspective; -webkit-transition-duration: 0.5s; 
 }
-#movieposters li { display:inline; float:left;
+#environment li { display:inline; float:left;
 	/*
 	position: absolute;
 	width: 400px; height: 400px; background-color: rgba(0, 100, 255, .3);
 	*/
 }
 
-/* #movieposters li.rota { -webkit-perspective: 500; } */
+/* #environment li.rota { -webkit-perspective: 500; } */
 	
-#movieposters li img, #movieposters li .movieinfo { 
+#environment li img, #environment li .cubeface { 
 	/*	
 	border:10px solid #fcfafa;
 	-moz-box-shadow:0 3px 10px #888; -webkit-box-shadow:0 3px 10px #888;
 	*/
 	-webkit-transition-property: transform; -webkit-transition-duration: 0.5s; position:absolute; }
 
-#movieposters li:first-of-type .movieinfo { -webkit-transform: rotateY(90deg) translate3d(0, 0, 100px); }
-#movieposters li:nth-of-type(2) .movieinfo { -webkit-transform: rotateY(0deg) translate3d(0, 0, -100px); }
-#movieposters li:nth-of-type(3) .movieinfo { -webkit-transform: rotateY(-90deg) translate3d(0, 0, 100px); }
+#environment li:first-of-type .cubeface { -webkit-transform: rotateY(90deg) translate3d(0, 0, 100px); }
+#environment li:nth-of-type(2) .cubeface { -webkit-transform: rotateY(0deg) translate3d(0, 0, -100px); }
+#environment li:nth-of-type(3) .cubeface { -webkit-transform: rotateY(-90deg) translate3d(0, 0, 100px); }
 
-#movieposters li.rota img { -webkit-transform: rotateY(0deg); }
+#environment li.rota img { -webkit-transform: rotateY(0deg); }
 
 
-.movieinfo { padding:10px; width:180px; height:180px; margin:0; position:absolute;
+.cubeface { padding:10px; width:180px; height:180px; margin:0; position:absolute;
 	/* border:10px solid #fcfafa; */
 	/* -moz-box-shadow:0 20px 40px #888; -webkit-box-shadow:0 20px 40px #888; */
 	/*-webkit-transform: translateZ(30px) rotateY(30deg);*/
 	-webkit-transition-property: transform; -webkit-transition-duration: 0.5s; }
 
-#movieposters li:first-of-type .movieinfo { background-color: rgba(0, 0, 255, .5); }
-#movieposters li:nth-of-type(2) .movieinfo { background-color: rgba(255, 255, 0, .5); }
-#movieposters li:nth-of-type(3) .movieinfo { background-color: rgba(255, 0, 0, .5); }
+#environment li:first-of-type .cubeface { background-color: rgba(0, 0, 255, .5); }
+#environment li:nth-of-type(2) .cubeface { background-color: rgba(255, 255, 0, .5); }
+#environment li:nth-of-type(3) .cubeface { background-color: rgba(255, 0, 0, .5); }
 
 	
-#movieposters li.rota:first-of-type .movieinfo { -webkit-transform: rotateY(0deg) translate3d(0, 0, 100px); }
-#movieposters li.rota:nth-of-type(2) .movieinfo { -webkit-transform: rotateY(-90deg) translate3d(0, 0, -100px); }
-#movieposters li.rota:nth-of-type(3) .movieinfo { -webkit-transform: rotateY(-180deg) translate3d(0, 0, 100px); }
+#environment li.rota:first-of-type .cubeface { -webkit-transform: rotateY(0deg) translate3d(0, 0, 100px); }
+#environment li.rota:nth-of-type(2) .cubeface { -webkit-transform: rotateY(-90deg) translate3d(0, 0, -100px); }
+#environment li.rota:nth-of-type(3) .cubeface { -webkit-transform: rotateY(-180deg) translate3d(0, 0, 100px); }
 
-.movieinfo h3 { color:#7a3f3a; font-variant: small-caps; font-family:Georgia,serif,Times; text-align:center; padding-bottom:15px; }
-.movieinfo p { padding-bottom:15px; }
-.movieinfo a { background-color:#7a3f3a; padding:5px 10px; color:#eee; text-decoration:none; display:block; width:80px; text-align:center; margin:0 auto;
+.cubeface h3 { color:#7a3f3a; font-variant: small-caps; font-family:Georgia,serif,Times; text-align:center; padding-bottom:15px; }
+.cubeface p { padding-bottom:15px; }
+.cubeface a { background-color:#7a3f3a; padding:5px 10px; color:#eee; text-decoration:none; display:block; width:80px; text-align:center; margin:0 auto;
 	-moz-border-radius:5px; -webkit-border-radius:5px; }
-.movieinfo a:hover, .movieinfo a:focus { background-color:#6a191f; color:#fff; }
+.cubeface a:hover, .cubeface a:focus { background-color:#6a191f; color:#fff; }
 </style>
 </head>
 <body>
-<div id="wrapper">
-	<h1>3d animation using pure CSS3<small>Movie Posters Example</small></h1>
-	<h2><a href="http://www.marcofolio.net/" title="Visit Marcofolio.net">Marcofolio.net</a></h2>
-	<div id="content">
-		<p class="info">Here's an example of pretty powerful CSS3 animation and 3d effects. Using the <code>perspective</code>, <code>transform</code> and <code>transition</code> properties, we can create a 3d animation effect. Simply hover over the movie posters below to see the effect in it's full glory.</p>
-		<p class="info">Just make sure you're running the latest version of a <code>-webkit</code> based browser (Apple Safari or Google Chrome) to see the effect. If you don't have any of those browers, visit the article to see a video of the effect.</p>
-		<div id="toggle-all"><h1>toggle all!</h1></div>
-		<ul id="movieposters">
-			<li>
-				<!-- <img src="http://demo.marcofolio.net/3d_animation_css3/images/01_iron_man_2.jpg" alt="Iron Man 2" /> -->
-				<div class="movieinfo" id="firstmovieinfo">
-				</div>
-			</li>
-			<li>
-				<!-- <img src="http://demo.marcofolio.net/3d_animation_css3/images/02_the_last_airbender.jpg" alt="The Last Airbender" /> -->
-				<div class="movieinfo">
-				</div>
-			</li>
-			<li>
-				<!-- <img src="http://demo.marcofolio.net/3d_animation_css3/images/03_tron_legacy.jpg" alt="Tron Legacy" /> -->
-				<div class="movieinfo">
-				</div>
-			</li>
-		</ul>
+	<div id="wrapper">
+		<div id="content">
+			<div id="toggle-all"><h1>toggle all!</h1></div>
+			<ul id="environment">
+				<li>
+					<div class="cubeface"></div>
+				</li>
+				<li>
+					<div class="cubeface"></div>
+				</li>
+				<li>
+					<div class="cubeface">
+					</div>
+				</li>
+			</ul>
+		</div>
 	</div>
-</div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script>!window.jQuery && document.write('<script src="/js/jquery-1.7.1.min.js"><\/script>')</script>
-
-
-<script>
-
-	$("#movieposters li").click(function(){
-		$(this).toggleClass("rota");
-	});
-	$("#toggle-all").click(function(){
-		$("#movieposters li").toggleClass("rota");
-	});
-</script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script>!window.jQuery && document.write('<script src="/js/jquery-1.7.1.min.js"><\/script>')</script>
+	<script>
+		$("#environment li").click(function(){
+			$(this).toggleClass("rota");
+		});
+		$("#toggle-all").click(function(){
+			$("#environment li").toggleClass("rota");
+		});
+	</script>
 </body>
 </html>
