@@ -21,8 +21,25 @@ var mongoose = require('mongoose')
 	, Schema = mongoose.Schema
 	, ObjectId = mongoose.SchemaTypes.ObjectId;
 
-var app = express.createServer();
 
+
+
+
+
+/**
+ * App.
+ */
+
+/*
+const fs = require("fs");
+var serverOptions = {
+  key: fs.readFileSync('./certs/privatekey.pem'),
+  cert: fs.readFileSync('./certs/certificate.pem')
+};
+var secureApp = express.createServer(serverOptions);
+*/
+
+var app = express.createServer();
 
 models.defineModels(mongoose, function() {
 	app.WebSearch = mongoose.model('websearch');
@@ -166,6 +183,49 @@ app.get('/about', function (req, res) {
 	});
 });
 
+
+app.get('/api/queue/:uid', function(req, res) {
+	var uid = req.params.uid;
+	console.log(uid);
+	//db.websearches.find({"searches.clientId":"TEST"});
+	//db.websearches.find({"searches.clientId":{ $ne: "TEST"}}).count();
+	//db.websearches.find({"searches.clientId":{ $ne: "TEST2"}}).count();
+
+
+	/*
+	//http://mongoosejs.com/docs/finding-documents.html
+	//do we need to add a find() call first?
+	app.WebSearch.where('searches.clientId').ne(uid)
+		.select('created', 'query', 'searches')
+		.desc('created')
+		.limit(1)
+		.run(function(err, obj) {
+			console.log(obj);
+			res.send(obj.query);
+		}
+	);
+	*/
+
+/*
+Model
+.where('age').gte(25)
+.where('tags').in(['movie', 'music', 'art'])
+.select('name', 'age', 'tags')
+.skip(20)
+.limit(10)
+.asc('age')
+.slaveOk()
+.hint({ age: 1, name: 1 })
+.run(callback);
+*/
+
+	app.WebSearch.findOne({"searches.clientId":{ '$ne': uid}}, function(err, result) {
+		console.log(result);
+		res.send(result.query);
+	});
+
+
+});
 
 app.post('/api/results', function(req, res) {
 	console.log("trying to post result for " + req.body.clientId);

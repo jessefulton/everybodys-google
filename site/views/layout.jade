@@ -7,8 +7,13 @@ html(lang='en')
 	- if (typeof(bodyClasses) == 'undefined')
 		- bodyClasses = ""
 	body(class=bodyClasses)
-		#header
-			h1 #{siteName}
+		#tabs
+			ul.navigation
+				li: a(href="#") Something
+				li: a(href="#") Something Else
+			// #headerlogo: a(href="http://jessefulton.com/"): span jdf
 		#wrapper
+			#header
+				//h1 #{siteName}
 			#content!= body
 			#footer

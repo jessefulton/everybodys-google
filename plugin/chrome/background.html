@@ -1,8 +1,20 @@
 <html>
 	<script src='jquery-1.7.js'></script>
+	<script src="x-frame.js"></script>
 	<script>
-	
-		//TODO: set timeout/interval for running EG queries to match up result sets...
+		//chrome.tabs.getCurrent(function(t) { console.log(t); });
+		
+		
+		/*
+		//set timeout/interval for running EG queries to match up result sets...
+		setInterval(function() {
+				var uid = "TEST";
+				$.get("http://localhost:5100/api/queue/" + uid, 
+					function(responseObj) {
+						console.log(responseObj);
+				});
+		}, 5*60*1000);
+		*/
 	
 		chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 			console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");

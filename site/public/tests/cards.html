@@ -37,16 +37,13 @@
 				/*-webkit-transition-property: transform; -webkit-transition-duration: 0.5s; position:absolute; */
 			}
 			
-			#environment li:first-of-type .cubeface { -webkit-transform: rotateY(-90deg) translate3d(0, 0, 100px); }
-			#environment li:nth-of-type(2) .cubeface { -webkit-transform: rotateY(0deg) translate3d(0, 0, 100px); }
-			#environment li:nth-of-type(3) .cubeface { -webkit-transform: rotateY(90deg) translate3d(0, 0, 100px); }
-			#environment li:nth-of-type(4) .cubeface { -webkit-transform: rotateY(0deg) translate3d(0, 0, -100px); }
-			
 			.cubeface { padding:10px; width:180px; height:180px; margin:0; position:absolute;
 				/* border:10px solid #fcfafa; */
 				/* -moz-box-shadow:0 20px 40px #888; -webkit-box-shadow:0 20px 40px #888; */
 				/*-webkit-transform: translateZ(30px) rotateY(30deg);*/
 				-webkit-transition-property: transform; -webkit-transition-duration: 0.5s;
+				font-size: 50px;
+				text-align: center;
 			}
 			
 			#environment li:first-of-type .cubeface { background-color: rgba(0, 0, 255, .5); }
@@ -54,30 +51,50 @@
 			#environment li:nth-of-type(3) .cubeface { background-color: rgba(255, 0, 0, .5); }
 			#environment li:nth-of-type(4) .cubeface { background-color: rgba(0, 255, 0, .5); }
 			
-			#environment li.rota:first-of-type .cubeface { -webkit-transform: rotateY(-180deg) translate3d(0, 0, 100px); }
-			#environment li.rota:nth-of-type(2) .cubeface { -webkit-transform: rotateY(-90deg) translate3d(0, 0, 100px); }
-			#environment li.rota:nth-of-type(3) .cubeface { -webkit-transform: rotateY(0deg) translate3d(0, 0, 100px); }
-			#environment li.rota:nth-of-type(4) .cubeface { -webkit-transform: rotateY(-90deg) translate3d(0, 0, -100px); }
+			
+			#environment li:first-of-type .cubeface { -webkit-transform: rotateY(-90deg) translate3d(0, 0, 100px); }
+			#environment li:nth-of-type(2) .cubeface { -webkit-transform: rotateY(0deg) translate3d(0, 0, 100px); }
+			#environment li:nth-of-type(3) .cubeface { -webkit-transform: rotateY(90deg) translate3d(0, 0, 100px); }
+			#environment li:nth-of-type(4) .cubeface { -webkit-transform: rotateY(180deg) translate3d(0, 0, 100px); }
+
+			#environment li.rota90:first-of-type .cubeface { -webkit-transform: rotateY(-180deg) translate3d(0, 0, 100px); }
+			#environment li.rota90:nth-of-type(2) .cubeface { -webkit-transform: rotateY(-90deg) translate3d(0, 0, 100px); }
+			#environment li.rota90:nth-of-type(3) .cubeface { -webkit-transform: rotateY(0deg) translate3d(0, 0, 100px); }
+			#environment li.rota90:nth-of-type(4) .cubeface { -webkit-transform: rotateY(90deg) translate3d(0, 0, 100px); }
+			
+			#environment li.rota180:first-of-type .cubeface { -webkit-transform: rotateY(-270deg) translate3d(0, 0, 100px); }
+			#environment li.rota180:nth-of-type(2) .cubeface { -webkit-transform: rotateY(-180deg) translate3d(0, 0, 100px); }
+			#environment li.rota180:nth-of-type(3) .cubeface { -webkit-transform: rotateY(-90deg) translate3d(0, 0, 100px); }
+			#environment li.rota180:nth-of-type(4) .cubeface { -webkit-transform: rotateY(0deg) translate3d(0, 0, 100px); }
+
+			#environment li.rota270:first-of-type .cubeface { -webkit-transform: rotateY(-360deg) translate3d(0, 0, 100px); }
+			#environment li.rota270:nth-of-type(2) .cubeface { -webkit-transform: rotateY(-270deg) translate3d(0, 0, 100px); }
+			#environment li.rota270:nth-of-type(3) .cubeface { -webkit-transform: rotateY(-180deg) translate3d(0, 0, 100px); }
+			#environment li.rota270:nth-of-type(4) .cubeface { -webkit-transform: rotateY(-90deg) translate3d(0, 0, 100px); }
+			
 		</style>
 	</head>
 <body>
 	<div id="wrapper">
 		<div id="content">
-			<div id="toggle-all"><h1>toggle all!</h1></div>
+			<div id="toggles">
+				<h1 id="one">one</h1>
+				<h1 id="two">two</h1>
+				<h1 id="three">three</h1>
+				<h1 id="four">four</h1>
+			</div>
 			<ul id="environment">
 				<li>
-					<div class="cubeface"></div>
+					<div class="cubeface">4</div>
 				</li>
 				<li>
-					<div class="cubeface"></div>
+					<div class="cubeface">1</div>
 				</li>
 				<li>
-					<div class="cubeface">
-					</div>
+					<div class="cubeface">2</div>
 				</li>
 				<li>
-					<div class="cubeface">
-					</div>
+					<div class="cubeface">3</div>
 				</li>
 			</ul>
 		</div>
@@ -90,8 +107,17 @@
 			$(this).toggleClass("rota");
 		});
 		*/
-		$("#toggle-all").click(function(){
-			$("#environment li").toggleClass("rota");
+		$("#one").click(function(){
+			$("#environment li").removeClass().addClass("rota0");
+		});
+		$("#two").click(function(){
+			$("#environment li").removeClass().addClass("rota90");
+		});
+		$("#three").click(function(){
+			$("#environment li").removeClass().addClass("rota180");
+		});
+		$("#four").click(function(){
+			$("#environment li").removeClass().addClass("rota270");
 		});
 	</script>
 </body>

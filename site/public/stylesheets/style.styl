@@ -4,4 +4,51 @@
 @import 'mymixins'
 
 
-.search { width: 25%; float: left; }
+
+
+
+
+#tabs 
+	height 30px
+	width 100%
+	z-index 99999
+	top 0
+	left 0
+	background-color #000
+	color #ffffa9
+	position absolute
+	font-size 13px
+	font-family Arial, sans-serif
+
+#tabs ul, #tabs ul li { height: 27px; float: left; margin:0; padding: 0; }
+#tabs ul li a { color: #fcfffd; padding: 1px 2px 2px; margin-right: 16px; display:block; height: 27px; line-height: 27px; float:left; text-decoration: none;}
+#tabs ul li a:hover, #tabs ul li.active a { background-color: #888; }
+#tabs ul li.active a { background-color: #444; }
+#tabs ul li.active a:hover { background-color: #888; }
+
+
+
+
+#wrapper
+	margin-top 64px
+
+
+body.index
+	#content
+		width: 800px
+		margin 0 auto
+		text-align center
+
+		#searchbox 
+			left 0
+			border 1px solid #CCC
+			padding 0 0 0 2px
+			margin 0
+			width 486px
+			height 29px
+
+.search 
+	width 25%
+	float left
+
+
