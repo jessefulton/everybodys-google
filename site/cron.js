@@ -1,5 +1,8 @@
 //	*/15 * * * * /FULL/PATH/TO/node /FULL/PATH/TO/cron.js
 
+//TODO: Add screenshots to cron (and DB)?
+
+
 /**
  * This script runs the Google Custom Search queries as a cron task.
  * On the free tier, you're limited to 100 queries/day, so I've set
